@@ -1,0 +1,23 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ stylesheet }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ home_link }}">🏠 Home</a>
+        {% if prev_link %}
+            | <a href="{{ prev_link }}">⬅️ Previous</a>
+        {% endif %}
+        {% if next_link %}
+            | <a href="{{ next_link }}">Next ➡️</a>
+        {% endif %}
+    </nav>
+    <div class="content">
+        {{ content | safe }}
+    </div>
+</body>
+</html>
+
