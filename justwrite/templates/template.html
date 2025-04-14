@@ -1,23 +1,41 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ stylesheet }}">
 </head>
 <body>
-    <nav>
-        <a href="{{ home_link }}">🏠 Home</a>
+    <nav class="navbar">
+        <fieldset class="toggle-group" id="colorScheme">
+            <label data-icon="☀️">
+                <input type="radio" name="color-scheme" id="color-scheme-light" value="0" data-sr>
+                Light
+            </label>
+            <label data-icon="🌓">
+                <input type="radio" name="color-scheme" value="auto" checked data-sr>
+                Auto
+            </label>
+            <label data-icon="🌙">
+                <input type="radio" name="color-scheme" id="color-scheme-dark" value="1" data-sr>
+                Dark
+            </label>
+        </fieldset>
+        <a href="{{ home_link }}" class="home">🏠 Home</a>
+    </nav>
+    <main>
+        <div class="content">
+            {{ content | safe }}
+        </div>
+
         {% if prev_link %}
             | <a href="{{ prev_link }}">⬅️ Previous</a>
         {% endif %}
         {% if next_link %}
             | <a href="{{ next_link }}">Next ➡️</a>
         {% endif %}
-    </nav>
-    <div class="content">
-        {{ content | safe }}
-    </div>
+    </main>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
 

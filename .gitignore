@@ -9,3 +9,4 @@ build/
 site/
 .env
 _site/
+_blog/

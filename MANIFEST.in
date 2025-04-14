@@ -1,0 +1,2 @@
+recursive-include justwrite/templates *
+recursive-include justwrite/static *
