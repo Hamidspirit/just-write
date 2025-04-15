@@ -1,4 +1,4 @@
-from justwrite.cli import cli
+from justwrite.cli.cli import cli
 
 if __name__ == "__main__":
     cli()

@@ -50,6 +50,17 @@ You can also specify folders:
 python main.py --content path/to/your/posts --output path/to/output/site
 ```
 
+Also you can put your own styles in a path  `static/styles` so that will be used instead of the default.
+
+For javascript files you can do the same but in this path `static/scripts`
+
+You also need to make a directory named templates and puth a `html` file named `tamplate.html`
+`templates/template.html`
+
+Markdown post should have this format 
+- `2024-10-01-my-first-post.md`
+- `2024-11-20-second-post.md`
+
 ## 🌐 Deploying Your Site
 The site/ folder is self-contained. You can upload it to:
 

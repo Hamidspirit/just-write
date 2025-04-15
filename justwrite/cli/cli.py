@@ -1,6 +1,6 @@
 import click
 
-from justwrite.generator import generate_site
+from justwrite.generator.generator import generate_site
 
 @click.command()
 @click.option("--content", default="content", help="Directory with markdown files")

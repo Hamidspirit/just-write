@@ -58,6 +58,12 @@ p, ul, ol {
   font-size: 1.05em;
 }
 
+li .date {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 10px;
+}
+
 
 @media (prefers-color-scheme: dark) {
   html { --darkmode: 1; }
@@ -190,4 +196,34 @@ html:has(#color-scheme-dark:checked) { --darkmode: 1; }
   body {
     padding: 1.5rem 1rem;
   }
+}
+
+/* pagination */
+
+.pagination {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.pagination .page-number,
+.pagination .page-link {
+    display: inline-block;
+    margin: 0 0.4rem;
+    padding: 0.4rem 0.8rem;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.pagination .page-number.active {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+}
+
+.pagination .page-number:hover,
+.pagination .page-link:hover {
+    background-color: #ccc;
 }
