@@ -3,7 +3,6 @@ import math
 from datetime import datetime
 import shutil
 import markdown
-from jinja2 import Environment, FileSystemLoader
 
 from justwrite.user_util.user_style import get_user_static_dir, get_template_env
 from .detectors import detect_style_files, detect_script_files
@@ -62,15 +61,15 @@ def generate_index_html(files, env, output_dir, posts_per_page=5):
         end = start + posts_per_page
         current_files = files[start:end]
 
-        index_html = "<h1>Just Write Posts</h1><ul>"
+        index_html = "<h1>Just Write</h1>\n\t<ul>"
         for title, file, date in current_files:
             formatted_date = date.strftime("%B %d, %Y") if date else "Unknown Date"
-            index_html += f'<li><a href="{file}">{title.replace("-", " ").title()}</a> <span class="date">{formatted_date}</span></li>'
+            index_html += f'\n\t<li>\n\t<a href="{file}">{title.replace("-", " ").title()}</a> <span class="date">{formatted_date}</span>\n\t</li>\n'
 
-        index_html += "</ul>"
+        index_html += "\t</ul>"
 
         # Build numbered pagination
-        pagination = '<div class="pagination">'
+        pagination = '\n\t\t\t<div class="pagination">'
         if page > 0:
             prev_page = "index.html" if page == 1 else f"page{page}.html"
             pagination += f'<a href="{prev_page}" class="page-link">⟵ Previous</a> '
@@ -114,7 +113,7 @@ def list_posts(content_dir):
             try:
                 date_str, title_part = parse_filename(f)
                 date = datetime.strptime(date_str, "%Y-%m-%d")
-                print(f"date string: {date_str}, date: {date}")
+                # print(f"date string: {date_str}, date: {date}")
                 posts.append((f, title_part, date))
             except ValueError:
                 # fallback for old files

@@ -2,7 +2,7 @@ import os
 from jinja2 import Environment, FileSystemLoader
 
 def get_user_static_dir():
-    # Look in current working directory first (i.e. project root)
+    # Look in current working directory first (i.e. project root_dir)
     user_static_dir = os.path.join(os.getcwd(), "static")
 
     # Fallback: go one level up from user_util/
@@ -20,19 +20,18 @@ def get_user_static_dir():
 
 def get_template_env():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    root_dir = os.path.abspath(os.path.join(base_dir, '..', '..'))  # <- project root
+    root_dir = os.path.join(os.getcwd(), "templates")  # <- project root_dir
 
     # Check for user-defined template directory
-    user_template_dir = os.path.join(root_dir, 'templates')
     default_template_dir = os.path.join(base_dir, 'templates')  # your built-in
 
-    template_path = os.path.join(user_template_dir, 'template.html')
+    template_path = os.path.join(root_dir, 'template.html')
     if not os.path.isfile(template_path):
         print("⚠️  template.html not found in user template folder. Using default.")
 
-    if os.path.isdir(user_template_dir):
-        print(f"✅ Using user templates from: {user_template_dir}")
-        loader = FileSystemLoader(user_template_dir)
+    if os.path.isdir(root_dir):
+        print(f"✅ Using user templates from: {root_dir}")
+        loader = FileSystemLoader(root_dir)
     else:
         print(f"⚠️  No user templates found, using default: {default_template_dir}")
         loader = FileSystemLoader(default_template_dir)

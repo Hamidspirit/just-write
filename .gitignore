@@ -10,3 +10,6 @@ site/
 .env
 _site/
 _blog/
+posts/
+static
+templates
