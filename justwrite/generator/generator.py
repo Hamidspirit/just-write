@@ -7,7 +7,7 @@ import markdown
 from justwrite.user_util.user_style import get_user_static_dir, get_template_env
 from .detectors import detect_style_files, detect_script_files
 
-def generate_site(content_dir, output_dir):
+def generate_site(content_dir, output_dir, user_title):
     static_dir = get_user_static_dir()
     env = get_template_env()
     template = env.get_template("template.html")
@@ -47,9 +47,9 @@ def generate_site(content_dir, output_dir):
 
         html_files.append((title_part, output_file, date))
 
-    generate_index_html(html_files, env, output_dir)
+    generate_index_html(html_files, env, output_dir, user_title)
 
-def generate_index_html(files, env, output_dir, posts_per_page=5):
+def generate_index_html(files, env, output_dir, user_title, posts_per_page=5):
     total_pages = math.ceil(len(files) / posts_per_page)
     static_dir = get_user_static_dir()
     styles = detect_style_files(static_dir=static_dir)
@@ -61,7 +61,7 @@ def generate_index_html(files, env, output_dir, posts_per_page=5):
         end = start + posts_per_page
         current_files = files[start:end]
 
-        index_html = "<h1>Just Write</h1>\n\t<ul>"
+        index_html = f"<h1>{user_title}</h1>\n\t<ul>"
         for title, file, date in current_files:
             formatted_date = date.strftime("%B %d, %Y") if date else "Unknown Date"
             index_html += f'\n\t<li>\n\t<a href="{file}">{title.replace("-", " ").title()}</a> <span class="date">{formatted_date}</span>\n\t</li>\n'
@@ -87,7 +87,7 @@ def generate_index_html(files, env, output_dir, posts_per_page=5):
         index_html += pagination
 
         rendered = template.render(
-            title=f"Just Write - Page {page + 1}",
+            title=f"{user_title}",
             content=index_html,
             stylesheets=styles,  
             scripts=scripts,

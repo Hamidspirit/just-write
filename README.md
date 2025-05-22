@@ -47,7 +47,7 @@ By default, it looks for .md files in the content/ folder and generates HTML fil
 
 You can also specify folders:
 ```bash
-python main.py --content path/to/your/posts --output path/to/output/site
+python main.py --content=path/to/your/posts --output=path/to/output/site --title=yourtitle
 ```
 
 Also you can put your own styles in a path  `static/styles` so that will be used instead of the default.
